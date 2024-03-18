@@ -25,4 +25,3 @@ clean:
 check:
 	clang-format *.c *.h common/*.c common/*.h -i
 	cppcheck --enable=all --suppress=missingIncludeSystem *.c *.h common/*.c common/*.h | grep ":"
-
