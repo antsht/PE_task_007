@@ -29,5 +29,5 @@ clean:
 	rm -rf *.o *.a
 
 check:
-	clang-format *.c *.h common/*.c common/*.h -i
-	# cppcheck --enable=all --suppress=missingIncludeSystem *.c *.h common/*.c common/*.h | grep ":"
+	clang-format *.c *.h common/*.c common/*.h db_dal/*.c db_dal/*.h -i
+	cppcheck --enable=all --force --suppress=missingIncludeSystem *.c *.h common/*.c common/*.h db_dal/*.c db_dal/*.h -U SQLITE_INT64_TYPE

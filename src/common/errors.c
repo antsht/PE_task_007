@@ -22,11 +22,6 @@ void try(ErrorCode error) {
         log_message("INVALID INPUT");
         puckxit();
     }
-    if (error == IMPOSSIBLE_ROUTE) {
-        log_message("IMPOSSIBLE ROUTE");
-        print_no_impossible_route_message();
-        exit(EXIT_SUCCESS);
-    }
     if (error == BUFFER_OVERFLOW) {
         log_message("BUFFER OVERFLOW");
         puckxit();
@@ -45,6 +40,4 @@ void puckxit() {
 
 void print_invalid_command_message() { printf("UNKNOWN COMMAND\n"); }
 
-void print_no_data_message() { printf("NO ORDERS\n"); }
-
-void print_no_impossible_route_message() { printf("Travel is impossible!"); }
+void print_no_data_message() { printf("NO DATA\n"); }

@@ -1,6 +1,5 @@
 #include "db_layer.h"
 
-
 ErrorCode db_open(sqlite3 **db) {
     int rc = 0;
     rc = sqlite3_open_v2("./data-samples/task007.db", db, SQLITE_OPEN_READWRITE, NULL);

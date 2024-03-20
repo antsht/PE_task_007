@@ -2,6 +2,7 @@
 #define STUDENTS_RECORD_H
 #include <string.h>
 
+#include "../common/errors.h"
 #include "../sqlite3/sqlite3.h"
 #define TEXT_FIELD_LENGTH 128
 
@@ -13,8 +14,8 @@ typedef struct {
 } student_t;
 
 student_t get_student(sqlite3 *db, int id);
-void print_student(student_t student);
-void get_all_students(sqlite3 *db );
-void print_all_students();
-
+ErrorCode print_student(student_t *student);
+void print_all_students(sqlite3 *db);
+void delete_student(sqlite3 *db, int id);
+void add_student(sqlite3 *db, student_t *student);
 #endif
