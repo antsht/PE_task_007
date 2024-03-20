@@ -35,7 +35,7 @@ jobs:
     - name: Check with cppcheck
       run: |
         if [ $(find ./src -type f -name "*.[ch]" | wc -l) -gt 0 ]; then
-            cppcheck --enable=all --suppress=missingIncludeSystem --error-exitcode=1 ./src/
+            cppcheck --enable=all --force --suppress=missingIncludeSystem -U SQLITE_INT64_TYPE --error-exitcode=1 ./src/
         fi
     
     - name: Make optional Makefile target show_str if present
