@@ -1,13 +1,13 @@
-#ifndef REAL_DB_H
-#define REAL_DB_H
+#ifndef UI_H
+#define UI_H
 #include <stdio.h>
 
-#include "common/errors.h"
-#include "common/logger.h"
-#include "db_dal/db_layer.h"
-#include "db_dal/students_record.h"
+#include "../common/errors.h"
+#include "../common/logger.h"
+#include "db_layer.h"
+#include "students_record.h"
 
-#define BUFFER 254
+#define INPUT_BUFFER_SIZE 254
 
 ErrorCode get_command(char *command);
 ErrorCode check_command(char *command);

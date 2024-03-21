@@ -1,5 +1,7 @@
 #include "logger.h"
 
+#include <time.h>
+
 static FILE *plog_file = NULL;
 
 void init_logger(void) {
@@ -7,14 +9,22 @@ void init_logger(void) {
     if (plog_file == NULL) {
         puckxit();
     }
-    fprintf(plog_file, "-------------");
+    fprintf(plog_file, "----NEW RUN----\n");
 }
 
 void log_message(const char *message) {
     if (plog_file == NULL) {
         init_logger();
     }
-    if (plog_file != NULL) fprintf(plog_file, "%s\n", message);
+    if (plog_file != NULL) {
+        print_date_time();
+        fprintf(plog_file, "%s\n", message);
+    }
+}
+void log_message2(const char *message, const char *message2) {
+    char log_msg[LOG_MESSAGE_BUFFER_SIZE];
+    sprintf(log_msg, message, message2);
+    log_message(log_msg);
 }
 
 void close_logger(void) {
@@ -22,4 +32,20 @@ void close_logger(void) {
         fclose(plog_file);
     }
     plog_file = NULL;
+}
+
+void print_date_time(void) {
+    if (plog_file == NULL) {
+        init_logger();
+    }
+    if (plog_file != NULL) {
+        time_t rawtime;
+        struct tm *timeinfo;
+
+        time(&rawtime);
+        timeinfo = localtime(&rawtime);
+
+        fprintf(plog_file, "%d-%02d-%02d %02d:%02d:%02d | ", timeinfo->tm_year + 1900, timeinfo->tm_mon + 1,
+                timeinfo->tm_mday, timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec);
+    }
 }

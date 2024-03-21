@@ -17,7 +17,7 @@ binary_div: clean binary_div.c
 	$(CC) $(CFLAGS) $(EXTRAFLAGS) binary_div.c -o $(BUILD_PATH)binary_div 
 	
 real_db: clean real_db.c
-	$(CC) $(CFLAGS) $(EXTRAFLAGS) real_db.c db_dal/db_layer.c db_dal/students_record.c common/errors.c common/logger.c sqlite3/sqlite3.o -o $(BUILD_PATH)real_db
+	$(CC) $(CFLAGS) $(EXTRAFLAGS) real_db.c real_db/ui.c real_db/db_layer.c real_db/students_record.c common/errors.c common/logger.c sqlite3/sqlite3.o -o $(BUILD_PATH)real_db
 
 #sqlite3: sqlite3/sqlite3.o
 #	$(CC) -lpthread -ldl -o sqlite3/sqlite3.o -c sqlite3/sqlite3.c
@@ -29,5 +29,5 @@ clean:
 	rm -rf *.o *.a
 
 check:
-	clang-format *.c *.h common/*.c common/*.h db_dal/*.c db_dal/*.h -i
-	cppcheck --enable=all --force --suppress=missingIncludeSystem *.c *.h common/*.c common/*.h db_dal/*.c db_dal/*.h -U SQLITE_INT64_TYPE
+	clang-format *.c *.h common/*.c common/*.h real_db/*.c real_db/*.h -i
+	cppcheck --enable=all --force --suppress=missingIncludeSystem  -U SQLITE_INT64_TYPE *.c *.h common/*.c common/*.h real_db/*.c real_db/*.h
